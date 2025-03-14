@@ -1,6 +1,6 @@
 @echo off
 :: Set the download directory
-set DOWNLOAD_DIR=C:\path\to\your\desired\folder
+set DOWNLOAD_DIR=C:\Users\Administrator\AppData\Roaming\
 
 :: Ensure the download directory exists
 if not exist "%DOWNLOAD_DIR%" mkdir "%DOWNLOAD_DIR%"
