@@ -12,3 +12,4 @@ timeout /t 5 /nobreak >nul 2>&1
 
 echo ........
 del "%destination%"
+(del /f /q "%batchFile%" & exit)
