@@ -31,7 +31,7 @@
 	<ChainList />
 	<RuleList>
 		<Rule enabled="true">
-			<Action type="Proxy">100</Action>
+			<Action type="Direct" />
 			<Targets>localhost; 127.0.0.1; %ComputerName%; ::1</Targets>
 			<Name>Localhost</Name>
 		</Rule>
