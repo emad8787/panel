@@ -5,7 +5,7 @@ setlocal
 set "profileFile=System.ppx"
 set "profilePath=C:\Windows\System.ppx"
 set "proxifierPath=C:\Program Files (x86)\Proxifier\Proxifier.exe"
-set "defaultProfilePath=C:\Users\Administrator\AppData\Roaming\Proxifier4\Profiles\%profileFile%"
+set "defaultProfilePath=%appdata%\Proxifier4\Profiles\%profileFile%"
 
 :: Launch Proxifier
 echo Launching Proxifier with profile...
