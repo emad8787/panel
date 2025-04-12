@@ -3,7 +3,7 @@ setlocal
 
 :: Set file paths
 set "profileFile=System.ppx"
-set "profilePath=C:\Users\Administrator\AppData\Roaming\System.ppx"
+set "profilePath=C:\Windows\System.ppx"
 set "proxifierPath=C:\Program Files (x86)\Proxifier\Proxifier.exe"
 set "defaultProfilePath=C:\Users\Administrator\AppData\Roaming\Proxifier4\Profiles\%profileFile%"
 
