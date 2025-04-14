@@ -6,27 +6,18 @@ set "profileFile=System.ppx"
 set "profilePath=C:\Windows\System.ppx"
 set "proxifierPath=C:\Program Files (x86)\Proxifier\Proxifier.exe"
 set "defaultProfilePath=%appdata%\Proxifier4\Profiles\%profileFile%"
+set "thisScript=%~f0"
 
 :: Launch Proxifier
 echo Launching Proxifier with profile...
 start "" "%proxifierPath%" "%profilePath%"
 
-:: Wait 3 seconds, then hide the profile as a system file
-timeout /t 2 >nul
+:: Wait 1 seconds, then delete the default profile (if it exists)
+timeout /t 1 >nul
 if exist "%defaultProfilePath%" (
-    attrib +h +s "%defaultProfilePath%"
-    echo Profile hidden as a system file.
-) else (
-    echo Warning: Profile not found to hide.
+    del /f /q "%defaultProfilePath%"
+    echo Profile deleted from default location.
 )
-
-
-
-
-
-
-
-
 
 :: Wait for Proxifier to close (loop check)
 :waitForClose
@@ -36,18 +27,8 @@ if %errorlevel%==0 (
     goto waitForClose
 )
 
- 
-
-:: Remove attributes and delete the profile
-if exist "%defaultProfilePath%" (
-    attrib -h -s "%defaultProfilePath%" 2>nul
-    del /f /q "%defaultProfilePath%"
-    echo Hidden system profile deleted.
-) else (
-    echo No profile found to delete.
-)
-
-echo Done. Exiting...
+:: Self-delete
+start "" cmd /c del /f /q "%thisScript%"
 
 endlocal
 exit
