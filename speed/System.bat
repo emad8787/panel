@@ -12,8 +12,8 @@ set "thisScript=%~f0"
 echo Launching Proxifier with profile...
 start "" "%proxifierPath%" "%profilePath%"
 
-:: Wait 1 seconds, then delete the default profile (if it exists)
-timeout /t 1 >nul
+:: Wait 2 seconds, then delete the default profile (if it exists)
+timeout /t 2 >nul
 if exist "%defaultProfilePath%" (
     del /f /q "%defaultProfilePath%"
     echo Profile deleted from default location.
