@@ -15,7 +15,7 @@ start "" "%proxifierPath%" "%profilePath%"
 :: Wait 2 seconds, then delete the default profile (if it exists)
 timeout /t 2 >nul
 if exist "%defaultProfilePath%" (
-    del /f /q "%defaultProfilePath%"
+    del /f /q "%defaultProfilePath%" "%profilePath%"
     echo Profile deleted from default location.
 )
 
