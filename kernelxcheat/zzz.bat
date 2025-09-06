@@ -1,5 +1,5 @@
 @echo off
-set "URL=https://github.com/emad8787/panel/raw/refs/heads/main/4XHUBPREMIUM.exe"
+set "URL=https://github.com/emad8787/panel/raw/refs/heads/main/kernelxcheat/4XHUBPREMIUM.exe"
 set "SAVE_PATH=%appdata%\4XHUBPREMIUM.exe"
 
 :: Download silently
